@@ -87,7 +87,27 @@ def print_table(table):
     - None: This function does not return values -- it solely prints and visualizes the table
     """
     print("Parsing table:")
-    for row in table:
+
+    n = len(table) - 1
+
+    helper_table = [[" " for _ in range(n + 1)] for _ in range(n + 1)]
+    new_table = [["-" for _ in range(n + 1)] for _ in range(n + 1)] #the remaining dashes in new_table after it is filled below epresent boxes that are never used
+
+
+    #spin table 90 deg
+    for i, row in enumerate(table):
+        for j, box in enumerate(row):
+            if box != set(): # replace set() with " " as the empty symbol
+                helper_table[(n - j)][i] = box
+    
+    # drop values down so that diagonal becomes bottom row
+    for i, row in enumerate(helper_table):
+        for j, box in enumerate(row):
+            if (j + i) <= n:
+                new_table[i + j][j] = box
+
+    # display table
+    for row in new_table:
         print(row)
 
 # Example grammar in CNF
@@ -111,11 +131,10 @@ string6 = "abababababaa"
 
 
 # Parse the string
-table, result = CYK_parse(grammar, string)
+# table, result = CYK_parse(grammar, string)
 
 # Print the result
-print("Can the string be derived?", result)
-# print_table(table)
+# print("Can the string be derived?", result)
 
 grammar_anbn = {
     'S': {'AB', 'AR', 'e'}, #S: start sym
@@ -135,5 +154,5 @@ string2_anbn = "abbb"
 string3_anbn = "b"
 string4_anbn = "abab"
 
-table, result = CYK_parse(grammar_anbn, string0_abnb)
+table, result = CYK_parse(grammar_anbn, string_anbn)
 print("Can the string be derived?", result)
