@@ -38,7 +38,7 @@ def CYK_parse(grammar, string):
                 # the non-terminal symbol (lhs) can be used to derive this specific character according to the grammar rules.
                     T[i][i].add(lhs)
                     # if the above is true, then non-terminal symbol (lhs) is added to the set at position [i][i] in the 2D list T.
-                    print(f"{string[i]} found in {lhs, rhs}. Adding {lhs} to T[{i}][{i}]")
+                    # print(f"{string[i]} found in {lhs, rhs}. Adding {lhs} to T[{i}][{i}]")
                     # show character from the string was found in the grammar rule 
                     # and which non-terminal symbol was added to the table.
                     print_table(T)
@@ -63,7 +63,7 @@ def CYK_parse(grammar, string):
                             # 1. the production rule prod is a binary
                             # 2. the first symbol of prod can generate the substring from i to k
                             # 3. the second symbol of prod can generate the substring from k + 1 to j
-                                print(f"{prod[0]} found in T[{i}][{k}] and {prod[1]} found in T[{k+1}][{j}]. {lhs} : {prod[0]}{prod[1]} is valid. Adding {lhs} to T[{i}][{j}]")
+                                # print(f"{prod[0]} found in T[{i}][{k}] and {prod[1]} found in T[{k+1}][{j}]. {lhs} : {prod[0]}{prod[1]} is valid. Adding {lhs} to T[{i}][{j}]")
                                 T[i][j].add(lhs)
                                 # then add the non-terminal lhs, since can generate the substring from i to j
                                 print_table(T)
@@ -91,7 +91,7 @@ def print_table(table):
     n = len(table) - 1
 
     helper_table = [[" " for _ in range(n + 1)] for _ in range(n + 1)]
-    new_table = [["-" for _ in range(n + 1)] for _ in range(n + 1)] #the remaining dashes in new_table after it is filled below epresent boxes that are never used
+    new_table = [["-" for _ in range(n + 1)] for _ in range(n + 1)] #the remaining dashes in new_table after it is filled below represent boxes that are never used
 
 
     #spin table 90 deg
