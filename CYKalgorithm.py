@@ -111,7 +111,7 @@ string6 = "abababababaa"
 
 
 # Parse the string
-table, result = CYK_parse(grammar, string6)
+table, result = CYK_parse(grammar, string)
 
 # Print the result
 print("Can the string be derived?", result)
